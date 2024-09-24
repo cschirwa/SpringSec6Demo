@@ -6,6 +6,7 @@ import com.kemtech.springsec6demo.entity.StudentResponse;
 import com.kemtech.springsec6demo.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,10 +26,12 @@ public class StudentController {
         return ResponseEntity.ok(studentService.findById(studentId));
     }
 
+
     @GetMapping(value = {"/students", "/students/"})
     public ResponseEntity<List<StudentResponse>> findAll(){
         return ResponseEntity.ok(studentService.findAll());
     }
+
 
     @PostMapping(value = {"/students", "/students/"})
     public ResponseEntity<StudentResponse> add(StudentRequest studentRequest){
